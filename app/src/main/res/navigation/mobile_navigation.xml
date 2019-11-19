@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_news">
+
+    <fragment
+        android:id="@+id/nav_news"
+        android:name="com.dreamteamk4240.smtu.ui.news.NewsFragment"
+        android:label="@string/menu_news"
+        tools:layout="@layout/fragment_news" />
+
+    <fragment
+        android:id="@+id/nav_schedule"
+        android:name="com.dreamteamk4240.smtu.ui.schedule.ScheduleFragment"
+        android:label="@string/menu_schedule"
+        tools:layout="@layout/fragment_schedule" />
+
+    <fragment
+        android:id="@+id/nav_faculty"
+        android:name="com.dreamteamk4240.smtu.ui.faculty.FacultyFragment"
+        android:label="@string/menu_faculty"
+        tools:layout="@layout/fragment_faculty" />
+
+    <fragment
+        android:id="@+id/nav_persons"
+        android:name="com.dreamteamk4240.smtu.ui.persons.PersonsFragment"
+        android:label="@string/menu_persons"
+        tools:layout="@layout/fragment_persons" />
+
+    <fragment
+        android:id="@+id/nav_specialties"
+        android:name="com.dreamteamk4240.smtu.ui.specialties.SpecialtiesFragment"
+        android:label="@string/menu_specialties"
+        tools:layout="@layout/fragment_specialties" />
+
+    <fragment
+        android:id="@+id/nav_contacts"
+        android:name="com.dreamteamk4240.smtu.ui.contacts.СontactsFragment"
+        android:label="@string/menu_contacts"
+        tools:layout="@layout/fragment_contacts" />
+</navigation>
