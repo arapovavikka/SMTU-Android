@@ -33,7 +33,7 @@ public class ScheduleFragment extends Fragment {
         View loadingView = inflater.inflate(R.layout.loading, container, false);
         FrameLayout frameSchedule = root.findViewById(R.id.frame_schedule);
         LinearLayout progressBar = loadingView.findViewById(R.id.progress_bar);
-        downLoadData(progressBar, frameSchedule, root);
+        downloadData(progressBar, frameSchedule, root);
 //        frameSchedule.addView(initSchedulerTextView(root));
 //        final TextView textView = root.findViewById(R.id.text_schedule);
 //        scheduleViewModel.getText().observe(this, new Observer<String>() {
@@ -47,62 +47,36 @@ public class ScheduleFragment extends Fragment {
 
     private ArrayList<String> getTestDataForRecyclerView() {
         return new ArrayList<String>() {{
-            add("Communication");
-            add("Computer");
-            add("Engineer");
-            add("Economy");
-            add("Communication");
-            add("Computer");
-            add("Engineer");
-            add("Economy");
-            add("Communication");
-            add("Computer");
-            add("Engineer");
-            add("Economy");
-            add("Communication");
-            add("Computer");
-            add("Engineer");
-            add("Economy");
-            add("Communication");
-            add("Computer");
-            add("Engineer");
-            add("Economy");
-            add("Communication");
-            add("Computer");
-            add("Engineer");
-            add("Economy");
-            add("Communication");
-            add("Computer");
-            add("Engineer");
-            add("Economy");
-            add("Communication");
-            add("Computer");
-            add("Engineer");
-            add("Economy");
-            add("Communication");
-            add("Computer");
-            add("Engineer");
-            add("Economy");
-            add("Communication");
-            add("Computer");
-            add("Engineer");
-            add("Economy");
-            add("Communication");
-            add("Computer");
-            add("Engineer");
-            add("Economy");
-            add("Communication");
-            add("Computer");
-            add("Engineer");
-            add("Economy");
-            add("Communication");
-            add("Computer");
-            add("Engineer");
-            add("Economy");
-            add("Communication");
-            add("Computer");
-            add("Engineer");
-            add("Economy");
+            add("Факультет кораблестроения и океанографии");
+            add("Факультет корабельной техники и автоматики");
+            add("Факультет кораблестроения и океанографии");
+            add("Факультет корабельной техники и автоматики");
+            add("Факультет кораблестроения и океанографии");
+            add("Факультет корабельной техники и автоматики");
+            add("Факультет кораблестроения и океанографии");
+            add("Факультет корабельной техники и автоматики");
+            add("Факультет кораблестроения и океанографии");
+            add("Факультет корабельной техники и автоматики");
+            add("Факультет кораблестроения и океанографии");
+            add("Факультет корабельной техники и автоматики");
+            add("Факультет кораблестроения и океанографии");
+            add("Факультет корабельной техники и автоматики");
+            add("Факультет кораблестроения и океанографии");
+            add("Факультет корабельной техники и автоматики");
+            add("Факультет кораблестроения и океанографии");
+            add("Факультет корабельной техники и автоматики");
+            add("Факультет кораблестроения и океанографии");
+            add("Факультет корабельной техники и автоматики");
+            add("Факультет кораблестроения и океанографии");
+            add("Факультет корабельной техники и автоматики");
+            add("Факультет кораблестроения и океанографии");
+            add("Факультет корабельной техники и автоматики");
+            add("Факультет кораблестроения и океанографии");
+            add("Факультет корабельной техники и автоматики");
+            add("Факультет кораблестроения и океанографии");
+            add("Факультет корабельной техники и автоматики");
+            add("Факультет кораблестроения и океанографии");
+            add("Факультет корабельной техники и автоматики");
 
         }};
 
@@ -160,7 +134,7 @@ public class ScheduleFragment extends Fragment {
         return recyclerView;
     }
 
-    private void downLoadData(View progressBarView, FrameLayout frameLayout, View root) {
+    private void downloadData(View progressBarView, FrameLayout frameLayout, View root) {
 
 //        frameLayout.addView(progressBarView);
         frameLayout.removeAllViews();
