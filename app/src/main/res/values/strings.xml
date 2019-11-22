@@ -13,4 +13,13 @@
     <string name="menu_specialties">Направления подготовки</string>
     <string name="menu_persons">Персоналии</string>
     <string name="menu_contacts">Контакты</string>
+    <array name="day_of_weeks">
+        <item>Пн</item>
+        <item>Вт</item>
+        <item>Ср</item>
+        <item>Чт</item>
+        <item>Пт</item>
+        <item>Сб</item>
+        <item>Вск</item>
+    </array>
 </resources>
