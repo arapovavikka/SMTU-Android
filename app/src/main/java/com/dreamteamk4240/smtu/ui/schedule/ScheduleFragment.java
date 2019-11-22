@@ -5,6 +5,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -28,7 +30,11 @@ public class ScheduleFragment extends Fragment {
         scheduleViewModel =
                 ViewModelProviders.of(this).get(ScheduleViewModel.class);
         View root = inflater.inflate(R.layout.fragment_schedule, container, false);
-        initRecyclerTextView(root);
+        View loadingView = inflater.inflate(R.layout.loading, container, false);
+        FrameLayout frameSchedule = root.findViewById(R.id.frame_schedule);
+        LinearLayout progressBar = loadingView.findViewById(R.id.progress_bar);
+        downLoadData(progressBar, frameSchedule, root);
+//        frameSchedule.addView(initSchedulerTextView(root));
 //        final TextView textView = root.findViewById(R.id.text_schedule);
 //        scheduleViewModel.getText().observe(this, new Observer<String>() {
 //            @Override
@@ -135,20 +141,30 @@ public class ScheduleFragment extends Fragment {
 
     }
 
-    private void initRecyclerTextView(View root) {
+    private View initRecyclerTextView(View root) {
         Log.d(TAG, "Initialise RecyclerView");
-        RecyclerView recyclerView = root.findViewById(R.id.recyclerView_list);
+        RecyclerView recyclerView = new RecyclerView(root.getContext());
         TextRecyclerViewAdapter scheduleAdapter = new TextRecyclerViewAdapter(getTestDataForRecyclerView(), root.getContext());
         recyclerView.setAdapter(scheduleAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(root.getContext()));
+        return recyclerView;
     }
 
-    private void initSchedulerTextView(View root) {
+    private View initSchedulerTextView(View root) {
         Log.d(TAG, "Initialise RecyclerView");
-        RecyclerView recyclerView = root.findViewById(R.id.recyclerView_list);
+        //RecyclerView recyclerView = root.findViewById(R.id.recyclerView_list);
+        RecyclerView recyclerView = new RecyclerView(root.getContext());
         ScheduleRecyclerViewAdapter scheduleAdapter = new ScheduleRecyclerViewAdapter(getTestDataForSchRecyclerView(), root.getContext());
         recyclerView.setAdapter(scheduleAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(root.getContext()));
+        return recyclerView;
+    }
+
+    private void downLoadData(View progressBarView, FrameLayout frameLayout, View root) {
+
+//        frameLayout.addView(progressBarView);
+        frameLayout.removeAllViews();
+        frameLayout.addView(initRecyclerTextView(root));
     }
 
 }
