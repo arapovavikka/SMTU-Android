@@ -22,4 +22,20 @@
         <item>Сб</item>
         <item>Вск</item>
     </array>
+    <string name="form_of_training">Форма обучения</string>
+    <string name="min_ball">Минимальный балл в 2019</string>
+    <string name="count_spot">Количество мест</string>
+    <string name="price">Стоимость</string>
+    <string name="advantages">Преимущества</string>
+    <string name="description_program">Описание программы</string>
+    <string name="purpose_program">Цель программы</string>
+    <string name="subjects">Дисциплины</string>
+    <string name="teachers">Преподаватели</string>
+    <string name="work_topics">Темы выпускных квалификационных работ</string>
+    <string name="review">Рецензия</string>
+    <string name="contact_person">Контактное лицо</string>
+    <string name="head_program">Руководитель программы</string>
+    <string name="graduating_department">Выпускающая кафедра</string>
+    <string name="educational_buildings">Учебные корпуса</string>
+    <string name="curriculum">Учебный план</string>
 </resources>

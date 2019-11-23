@@ -8,10 +8,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.dreamteamk4240.smtu.R;
@@ -27,7 +25,7 @@ public class NewsFragment extends Fragment {
         newsViewModel =
                 ViewModelProviders.of(this).get(NewsViewModel.class);
 
-        View root = inflater.inflate(R.layout.news_view, container, false);
+        View root = inflater.inflate(R.layout.news, container, false);
        // final TextView textView = root.findViewById(R.id.text_news);
        /* newsViewModel.getText().observe(this, new Observer<String>() {
             @Override

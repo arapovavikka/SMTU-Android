@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_items_background">
+
+    <LinearLayout
+        android:id="@+id/layout_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/text_news"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="8dp"
+            android:textSize="18sp"
+            android:textColor="@color/text_color"
+            android:text="Фестиваль пройдет в учебном корпусе «У» (Ленинский пр., д.101).
+Открытие фестиваля в понедельник, 28 октября в 10:00.
+
+В программе мероприятий, запланированных для проведения в СПбГМТУ -  пленарное заседание с выступлением почетных гостей университета, а также ряд круглых столов, посвященных следующим темам:
+
+"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layout_image"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        app:layout_constraintEnd_toEndOf="@id/layout_text"
+        app:layout_constraintStart_toStartOf="@id/layout_text"
+        app:layout_constraintTop_toBottomOf="@id/layout_text">
+
+        <ImageView
+            android:id="@+id/main_image_news"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            tools:srcCompat="@mipmap/image_news" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
