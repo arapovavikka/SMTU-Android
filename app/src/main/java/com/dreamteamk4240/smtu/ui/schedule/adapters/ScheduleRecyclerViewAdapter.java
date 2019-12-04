@@ -1,4 +1,4 @@
-package com.dreamteamk4240.smtu.ui.schedule;
+package com.dreamteamk4240.smtu.ui.schedule.adapters;
 
 import android.content.Context;
 import android.util.Log;
@@ -65,7 +65,7 @@ public class ScheduleRecyclerViewAdapter extends RecyclerView.Adapter<ScheduleRe
     }
 
 
-    public class ScheduleRecyclerViewHolder extends RecyclerView.ViewHolder {
+    protected class ScheduleRecyclerViewHolder extends RecyclerView.ViewHolder {
         private TextView subjectName;
         private TextView subjectType;
         private TextView timeTable;

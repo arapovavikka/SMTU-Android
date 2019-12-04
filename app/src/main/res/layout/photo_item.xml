@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="wrap_content"
+    android:background="@color/main_white"
+    android:elevation="12dp"
+    android:id="@+id/department_person_item"
+    android:layout_marginBottom="2dp"
+    android:layout_marginTop="3dp"
+    android:padding="2dp"
+    android:layout_marginRight="4dp"
+    android:layout_marginLeft="10dp"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="7dp"
+    android:layout_marginEnd="4dp">
+    <ImageView
+        android:id="@+id/department_person_image"
+        android:layout_width="80dp"
+        android:layout_height="100dp"
+        android:src="@drawable/p100629"
+        android:scaleType="fitXY"
+        android:background="@color/background_image" />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="9dp"
+        android:orientation="vertical"
+        android:layout_marginStart="9dp">
+        <TextView
+            android:id="@+id/person_name_tv"
+            android:layout_width="90dp"
+            android:textSize="12sp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/person_text_color"
+            android:text="Агафонов Алексей Михайлович"/>
+        <View
+            android:id="@+id/row"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="3dp"
+            android:background="@color/line_color"/>
+        <TextView
+            android:id="@+id/person_position"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
+            android:textSize="9sp"
+            android:textColor="@color/person_text_color"
+            android:text="заведующий лабораторией, Старший преподаватель "/>
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

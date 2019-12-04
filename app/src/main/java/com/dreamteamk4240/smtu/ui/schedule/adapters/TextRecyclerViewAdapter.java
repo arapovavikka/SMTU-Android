@@ -1,4 +1,4 @@
-package com.dreamteamk4240.smtu.ui.schedule;
+package com.dreamteamk4240.smtu.ui.schedule.adapters;
 
 import android.content.Context;
 import android.util.Log;
@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.dreamteamk4240.smtu.R;
+import com.dreamteamk4240.smtu.ui.schedule.ScheduleViewModel;
 
 import java.util.ArrayList;
 
@@ -19,10 +20,14 @@ public class TextRecyclerViewAdapter extends RecyclerView.Adapter<TextRecyclerVi
     private ArrayList<String> datas;
     private static final String TAG = TextRecyclerViewAdapter.class.getName();
     private Context context;
+    private ScheduleViewModel scheduleViewModel;
+    private boolean isFaculty;
 
-    public TextRecyclerViewAdapter(ArrayList<String> faculties, Context context) {
+    public TextRecyclerViewAdapter(ArrayList<String> faculties, Context context,ScheduleViewModel scheduleViewModel,boolean isFaculty) {
         this.datas = faculties;
         this.context = context;
+        this.scheduleViewModel = scheduleViewModel;
+        this.isFaculty = isFaculty;
     }
 
 
@@ -43,6 +48,9 @@ public class TextRecyclerViewAdapter extends RecyclerView.Adapter<TextRecyclerVi
             @Override
             public void onClick(View v) {
                 Log.d(TAG,"Clicked on "+position+" position");
+                if(isFaculty) {
+                    scheduleViewModel.setmText(datas.get(position));
+                }
             }
         });
     }

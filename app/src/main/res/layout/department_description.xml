@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <include
+        android:id="@+id/include"
+        layout="@layout/navigation_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:text="@string/head_of_department"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:textColor="@color/text_color"
+        android:paddingTop="7dp"
+        android:paddingLeft="17dp"
+        android:paddingRight="45dp"
+        android:paddingBottom="9dp"
+        android:background="@color/main_items_background"
+        android:paddingStart="17dp"
+        android:paddingEnd="45dp" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:paddingTop="8dp"
+        android:paddingRight="8dp"
+        android:paddingLeft="9dp"
+        android:paddingBottom="9dp"
+        android:layout_height="wrap_content"
+        android:paddingEnd="8dp"
+        android:paddingStart="9dp">
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="115dp"
+            android:src="@drawable/p100677"
+            android:layout_height="131dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Space
+            android:id="@+id/space_f"
+            android:layout_width="12dp"
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imageView2"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:layout_width="260dp"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/space_f"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:drawablePadding="9dp"
+                android:text="Согонов Сергей Александрович"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:drawablePadding="9dp"
+                android:drawableStart="@drawable/ic_phone_black_24dp"
+                android:drawableLeft="@drawable/ic_phone_black_24dp"
+                android:text="+7 (812) 494-0980"/>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:textSize="15sp"
+                android:layout_height="wrap_content"
+                android:drawablePadding="9dp"
+                android:drawableStart="@drawable/ic_mail_black_24dp"
+                android:drawableLeft="@drawable/ic_mail_black_24dp"
+                android:text="mds-sogonov@yandex.ru" />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:drawablePadding="9dp"
+                android:drawableStart="@drawable/ic_room_black_24dp"
+                android:drawableLeft="@drawable/ic_room_black_24dp"
+                android:text="190121, Санкт-Петербург, ул. Лоцманская 3, ауд. А-429." />
+
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:id="@+id/department_title"
+        android:layout_width="match_parent"
+        android:layout_height="31dp"
+        android:paddingLeft="17dp"
+        android:paddingRight="0dp"
+        android:textSize="18sp"
+        android:textColor="@color/text_color"
+        android:background="@color/main_items_background"
+        android:text="@string/department_title"
+        android:paddingStart="17dp"
+        android:paddingEnd="0dp" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+
+        android:layout_marginLeft="17dp"
+        android:layout_marginRight="4dp"
+        android:layout_marginStart="17dp"
+        android:layout_marginEnd="4dp" >
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:textSize="16dp"
+        android:text="   Подготовка и выпуск специалистов, бакалавров и магистров по основным образовательным программам высшего профессионального образования (ООП ВПО): 180201.65 «Системы электроэнергетики и автоматизации судов», срок обучения - 5 лет, квалификация – морской инженер (последний выпуск - 2015 г.) 180202.65 «Системотехника объектов морской инфраструктуры», срок обучения - 5 лет, квалификация – морской инженер (последний выпуск - 2015 г.) 090103.65 «Организация и технология защиты информации», срок обучения - 5 лет, квалификация – специалист по защите информации (последний выпуск - 2015 г.)"
+      />
+    </ScrollView>
+
+</LinearLayout>

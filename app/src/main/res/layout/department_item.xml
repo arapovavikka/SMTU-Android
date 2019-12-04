@@ -2,35 +2,32 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:id="@+id/recycler_item_text"
+    android:id="@+id/test_view"
     android:paddingLeft="14dp"
     android:paddingStart="14dp"
     android:paddingRight="0dp"
     android:paddingEnd="0dp"
     android:paddingTop="5dp"
-    android:paddingBottom="6dp"
-    android:orientation="vertical"
-
+    android:paddingBottom="0.5dp"
     android:background="@color/main_items_background"
+    android:orientation="vertical"
     android:layout_centerVertical="true">
 
-    <TextView
-        android:id="@+id/recycler_item_textView"
+    <TextView android:id="@+id/tv_movies"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/text_color"
-        android:textSize="18sp"
         android:paddingLeft="0dp"
         android:paddingStart="0dp"
         android:paddingRight="30dp"
         android:paddingEnd="30dp"
-        android:text="Факультет кораблестроения и океанотехники ">
-
-    </TextView>
+        android:textSize="20sp"
+        android:text="Факультет кораблестроения и океанотехники "/>
     <View
         android:id="@+id/row"
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="8dp"
+        android:layout_height="2dp"
+        android:layout_marginTop="12dp"
         android:background="@color/line_color"/>
+
 </LinearLayout>

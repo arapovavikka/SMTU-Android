@@ -6,6 +6,9 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
+    <string name="expanded">expanded: %s</string>
+    <string name="collapsed">collapsed: %s</string>
+    <string name="department_title">О кафедре</string>
 
     <string name="menu_news">Новости</string>
     <string name="menu_schedule">Расписание</string>
@@ -38,4 +41,6 @@
     <string name="graduating_department">Выпускающая кафедра</string>
     <string name="educational_buildings">Учебные корпуса</string>
     <string name="curriculum">Учебный план</string>
+    <string name="head_of_department">Заведущий кафедрой</string>
+    <string name="bachelor">Бакалавриат</string>
 </resources>

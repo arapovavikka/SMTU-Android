@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/department"
+    android:background="@color/main_items_background">
+
+    <TextView
+        android:id="@+id/about_department"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/main_white"
+        android:layout_marginTop="13dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="13dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginBottom="3dp"
+        android:textSize="16sp"
+        android:paddingLeft="7dp"
+        android:paddingRight="9dp"
+        android:layout_marginEnd="13dp"
+        android:textColor="@color/text_color"
+        android:text="Кафедра Судовой автоматики и измерений сравнительно молодая она создана как самостоятельная в декабре 1957 года. Однако подготовка студентов по автоматике началась задолго до этого. Уже с 1946 года в учебные планы энергетических специальностей машиностроительного факультета (ныне ФКЭ и А ГМТУ )была включена учебная дисциплина “Теория автоматического регулирования”. Тогда же в институте был организован семинар, руководил которым член-корреспондент АН СССР Иван Николаевич Вознесенский, крупный ученый, автор теории автономного регулирования, Бурное развитие автоматики потребовало и улучшения качества подготовки молодых специалистов, В связи с этим с 1950 года на кафедре Судовых силовых установок начинается широкая подготовка Первая группа для обучения по новой специальности была сфомирована из студентов 5-го курса. Целевое их обучение с продлением срока окончания института на полгода позволило обеспечить первый выпуск по новой специальности уже в том же 50-м году (среди выпускников 50-го года был и Б.В.Ракицкий, в настоящее время - д.т.н., проф.,), В дальнейшем срок обучения по нов месяцев)."
+        android:paddingStart="7dp"
+        android:paddingEnd="9dp" />
+
+</LinearLayout>

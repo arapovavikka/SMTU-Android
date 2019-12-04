@@ -6,4 +6,8 @@
     <color name="main_items_background">#BCC9F3</color>
     <color name="text_color">#2A324C</color>
     <color name="line_color">#A4AFD4</color>
+    <color name="main_white">#FFFFFF</color>
+    <color name="background_image">#DADADA</color>
+    <color name="person_text_color">#413DDC</color>
+
 </resources>
