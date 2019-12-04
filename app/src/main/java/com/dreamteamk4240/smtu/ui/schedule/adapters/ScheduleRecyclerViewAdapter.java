@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.dreamteamk4240.smtu.R;
 import com.dreamteamk4240.smtu.data.Schedule;
 import com.dreamteamk4240.smtu.service.DayOfWeekConverter;
+import com.dreamteamk4240.smtu.ui.schedule.ScheduleViewModel;
 
 import java.util.ArrayList;
 
@@ -23,11 +24,16 @@ public class ScheduleRecyclerViewAdapter extends RecyclerView.Adapter<ScheduleRe
     private static final String TAG = ScheduleRecyclerViewAdapter.class.getName();
     private Context context;
     private DayOfWeekConverter dayOfWeekConverter;
+    private ScheduleViewModel scheduleViewModel;
+    private String groupNumber;
 
-    public ScheduleRecyclerViewAdapter(ArrayList<Schedule> faculties, Context context) {
+    public ScheduleRecyclerViewAdapter(ArrayList<Schedule> faculties, Context context,ScheduleViewModel scheduleViewModel,String groupNumber) {
         dayOfWeekConverter = new DayOfWeekConverter(context.getResources().getStringArray(R.array.day_of_weeks));
         this.schedules = faculties;
         this.context = context;
+        this.scheduleViewModel = scheduleViewModel;
+        this.groupNumber = groupNumber;
+
     }
 
 
@@ -54,7 +60,10 @@ public class ScheduleRecyclerViewAdapter extends RecyclerView.Adapter<ScheduleRe
         holder.schedule_item.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Log.d(TAG, "Clicked on " + position + " position");
+                scheduleViewModel.setSchedule(null);
+                scheduleViewModel.setScreen(ScheduleViewModel.Screen.SCHEDULE_LIST_SCREEN);
             }
         });
     }

@@ -16,19 +16,18 @@ import com.dreamteamk4240.smtu.ui.schedule.ScheduleViewModel;
 
 import java.util.ArrayList;
 
-public class TextRecyclerViewAdapter extends RecyclerView.Adapter<TextRecyclerViewAdapter.TextRecyclerViewHolder> {
-    private ArrayList<String> datas;
-    private static final String TAG = TextRecyclerViewAdapter.class.getName();
-    private Context context;
-    private ScheduleViewModel scheduleViewModel;
-    private boolean isFaculty;
+public abstract class  TextRecyclerViewAdapter extends RecyclerView.Adapter<TextRecyclerViewAdapter.TextRecyclerViewHolder> {
+    protected ArrayList<String> datas;
+    protected static final String TAG = TextRecyclerViewAdapter.class.getName();
+    protected Context context;
+    protected ScheduleViewModel scheduleViewModel;
 
-    public TextRecyclerViewAdapter(ArrayList<String> faculties, Context context,ScheduleViewModel scheduleViewModel,boolean isFaculty) {
-        this.datas = faculties;
+    public TextRecyclerViewAdapter(ArrayList<String> datas, Context context,ScheduleViewModel scheduleViewModel) {
+        this.datas = datas;
         this.context = context;
         this.scheduleViewModel = scheduleViewModel;
-        this.isFaculty = isFaculty;
     }
+    abstract void onClickAction(View v,final int position);
 
 
     @NonNull
@@ -47,10 +46,7 @@ public class TextRecyclerViewAdapter extends RecyclerView.Adapter<TextRecyclerVi
         holder.linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d(TAG,"Clicked on "+position+" position");
-                if(isFaculty) {
-                    scheduleViewModel.setmText(datas.get(position));
-                }
+                onClickAction(v,position);
             }
         });
     }
