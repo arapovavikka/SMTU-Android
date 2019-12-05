@@ -26,6 +26,8 @@ public abstract class  TextRecyclerViewAdapter extends RecyclerView.Adapter<Text
         this.datas = datas;
         this.context = context;
         this.scheduleViewModel = scheduleViewModel;
+        scheduleViewModel.setSwitchType(ScheduleViewModel.SwitchType.DIRECTLY);
+        scheduleViewModel.setIsChangeScreen(false);
     }
     abstract void onClickAction(View v,final int position);
 
@@ -43,12 +45,7 @@ public abstract class  TextRecyclerViewAdapter extends RecyclerView.Adapter<Text
     public void onBindViewHolder(@NonNull TextRecyclerViewHolder holder, final int position) {
 
         holder.recyclerTextView.setText(datas.get(position));
-        holder.linearLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onClickAction(v,position);
-            }
-        });
+        holder.linearLayout.setOnClickListener(v -> onClickAction(v,position));
     }
 
     @Override

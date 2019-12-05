@@ -13,6 +13,7 @@ public class FacultyRecyclerViewAdapter extends TextRecyclerViewAdapter {
 
     public FacultyRecyclerViewAdapter(ArrayList<String> datas, Context context, ScheduleViewModel scheduleViewModel) {
         super(datas, context, scheduleViewModel);
+        scheduleViewModel.setScreen(ScheduleViewModel.Screen.FACULTY_LIST_SCREEN);
     }
 
     @Override
@@ -20,7 +21,7 @@ public class FacultyRecyclerViewAdapter extends TextRecyclerViewAdapter {
         Log.d(TAG,"Clicked on "+position+" position");
 
         scheduleViewModel.setFaculty(datas.get(position));
-        scheduleViewModel.setScreen(ScheduleViewModel.Screen.FACULTY_LIST_SCREEN);
+        scheduleViewModel.setIsChangeScreen(true);
 
     }
 }

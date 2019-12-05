@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
-import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -14,6 +13,8 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.dreamteamk4240.smtu.interfaces.BackButtonClick;
 import com.dreamteamk4240.smtu.R;
 import com.dreamteamk4240.smtu.data.DayOfWeek;
 import com.dreamteamk4240.smtu.data.EducationGroup;
@@ -21,7 +22,6 @@ import com.dreamteamk4240.smtu.data.Faculty;
 import com.dreamteamk4240.smtu.data.Schedule;
 import com.dreamteamk4240.smtu.data.ScheduleBean;
 import com.dreamteamk4240.smtu.data.ScheduleJson;
-import com.dreamteamk4240.smtu.twoLevelList.FacultyAdapter;
 import com.dreamteamk4240.smtu.ui.schedule.adapters.FacultyRecyclerViewAdapter;
 import com.dreamteamk4240.smtu.ui.schedule.adapters.GroupNumberRecyclerViewAdapter;
 import com.dreamteamk4240.smtu.ui.schedule.adapters.ScheduleRecyclerViewAdapter;
@@ -30,57 +30,32 @@ import com.dreamteamk4240.smtu.ui.schedule.adapters.TextRecyclerViewAdapter;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.Objects;
 
-public class ScheduleFragment extends Fragment {
+public class ScheduleFragment extends Fragment implements BackButtonClick {
     private static final String TAG = ScheduleFragment.class.getName();
 
     private ScheduleViewModel scheduleViewModel;
-    private FacultyAdapter mAdapter;
     private HashMap<String, Collection<String>> map;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         scheduleViewModel =
                 ViewModelProviders.of(this).get(ScheduleViewModel.class);
-         map=getTestDataForRecyclerView();
+        map = getTestDataForRecyclerView();
 
         View root = inflater.inflate(R.layout.fragment_schedule, container, false);
         View loadingView = inflater.inflate(R.layout.loading, container, false);
         FrameLayout frameSchedule = root.findViewById(R.id.frame_schedule);
-        LinearLayout progressBar = loadingView.findViewById(R.id.progress_bar);
+        //LinearLayout progressBar = loadingView.findViewById(R.id.progress_bar);
+        checkViewModel(root, frameSchedule);
 
-        //downloadData(progressBar, frameSchedule, root, scheduleViewModel);
-        initFrameLayout(frameSchedule,initFacultyRecyclerTextView(root,scheduleViewModel));
-
-        scheduleViewModel.getScreen().observe(this, item -> {
-            switch (item){
-                case GROUP_LIST_SCREEN:{
-                    Toast.makeText(root.getContext(),"group_list_screen",Toast.LENGTH_SHORT).show();
-                    initFrameLayout(frameSchedule,initSchedulerTextView(root,scheduleViewModel));
-                    break;
-                }
-                case FACULTY_LIST_SCREEN:{
-                    Toast.makeText(root.getContext(),"faculty_list_screen",Toast.LENGTH_SHORT).show();
-                    initFrameLayout(frameSchedule,initGroupTextView(root,scheduleViewModel));
-                    break;
-                }
-                case SCHEDULE_LIST_SCREEN:{
-                    Toast.makeText(root.getContext(),"schedule_list_screen",Toast.LENGTH_SHORT).show();
-                    initFrameLayout(frameSchedule,initFacultyRecyclerTextView(root,scheduleViewModel));
-
-                    break;
-                }
-                default: Toast.makeText(root.getContext(),"ERROR",Toast.LENGTH_SHORT).show();
-
-            }
-
-        });
         return root;
     }
 
     private HashMap<String, Collection<String>> getTestDataForRecyclerView() {
         HashMap<String, Collection<String>> map = new HashMap<>();
-        map.put("Факультет кораблестроения и океанографии",new ArrayList<String>(){{
+        map.put("Факультет кораблестроения и океанографии", new ArrayList<String>() {{
             add("11234");
             add("12345");
             add("12347");
@@ -88,7 +63,7 @@ public class ScheduleFragment extends Fragment {
             add("12360");
             add("12340");
         }});
-        map.put("Факультет кораблестроения ",new ArrayList<String>(){{
+        map.put("Факультет кораблестроения ", new ArrayList<String>() {{
             add("11234");
             add("12345");
             add("12347");
@@ -96,7 +71,7 @@ public class ScheduleFragment extends Fragment {
             add("1280");
             add("12340");
         }});
-        map.put("Факультет океанографии и океанографии",new ArrayList<String>(){{
+        map.put("Факультет океанографии и океанографии", new ArrayList<String>() {{
             add("11234");
             add("12345");
             add("12347");
@@ -104,7 +79,7 @@ public class ScheduleFragment extends Fragment {
             add("12399");
             add("12340");
         }});
-        map.put("Факультет кораблестроения и строениякорабле",new ArrayList<String>(){{
+        map.put("Факультет кораблестроения и строениякорабле", new ArrayList<String>() {{
             add("11234");
             add("12345");
             add("12347");
@@ -113,7 +88,7 @@ public class ScheduleFragment extends Fragment {
             add("12340");
             add("8888");
         }});
-        map.put("Факультет кораблестроения и самолетостроения",new ArrayList<String>(){{
+        map.put("Факультет кораблестроения и самолетостроения", new ArrayList<String>() {{
             add("11234");
             add("12345");
             add("12347");
@@ -121,7 +96,7 @@ public class ScheduleFragment extends Fragment {
             add("12349");
             add("12310");
         }});
-        map.put("Факультет кораблестроения и машиностроения",new ArrayList<String>(){{
+        map.put("Факультет кораблестроения и машиностроения", new ArrayList<String>() {{
             add("11234");
             add("12345");
             add("12347");
@@ -129,7 +104,7 @@ public class ScheduleFragment extends Fragment {
             add("12349");
             add("12320");
         }});
-        map.put("Факультет кораблестроения и шатлостроения",new ArrayList<String>(){{
+        map.put("Факультет кораблестроения и шатлостроения", new ArrayList<String>() {{
             add("11234");
             add("12345");
             add("12347");
@@ -137,7 +112,7 @@ public class ScheduleFragment extends Fragment {
             add("12399");
             add("12340");
         }});
-        map.put("Факультет кораблестроения и подлодкостроения",new ArrayList<String>(){{
+        map.put("Факультет кораблестроения и подлодкостроения", new ArrayList<String>() {{
             add("11234");
             add("12345");
             add("12347");
@@ -201,11 +176,11 @@ public class ScheduleFragment extends Fragment {
         return recyclerView;
     }
 
-    private View initSchedulerTextView(View root,ScheduleViewModel scheduleViewModel) {
+    private View initSchedulerTextView(View root, ScheduleViewModel scheduleViewModel) {
         Log.d(TAG, "Initialise RecyclerView");
         //RecyclerView recyclerView = root.findViewById(R.id.recyclerView_list);
         RecyclerView recyclerView = new RecyclerView(root.getContext());
-        ScheduleRecyclerViewAdapter scheduleAdapter = new ScheduleRecyclerViewAdapter(getTestDataForSchRecyclerView(), root.getContext(),scheduleViewModel, scheduleViewModel.getGroupNumber().getValue());
+        ScheduleRecyclerViewAdapter scheduleAdapter = new ScheduleRecyclerViewAdapter(getTestDataForSchRecyclerView(), root.getContext(), scheduleViewModel, scheduleViewModel.getGroupNumber().getValue());
         recyclerView.setAdapter(scheduleAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(root.getContext()));
         return recyclerView;
@@ -220,7 +195,7 @@ public class ScheduleFragment extends Fragment {
         // frameLayout.addView(initRecyclerTextView(root));
     }
 
-    private void initFrameLayout( FrameLayout frameLayout, View view) {
+    private void initFrameLayout(FrameLayout frameLayout, View view) {
 
 //        frameLayout.addView(progressBarView);
         frameLayout.removeAllViews();
@@ -228,15 +203,14 @@ public class ScheduleFragment extends Fragment {
         // frameLayout.addView(initRecyclerTextView(root));
     }
 
-    private ArrayList<String> getArrayList(){
-        ArrayList<String> st = new ArrayList<>(map.keySet());
-        return st;
+    private ArrayList<String> getArrayList() {
+        return new ArrayList<>(map.keySet());
     }
 
 
-    private ArrayList<ScheduleJson> getScheduleJsonList(){
-        ArrayList<ScheduleJson>  list = new ArrayList<>();
-        for(int i=0;i<20;i++) {
+    private ArrayList<ScheduleJson> getScheduleJsonList() {
+        ArrayList<ScheduleJson> list = new ArrayList<>();
+        for (int i = 0; i < 20; i++) {
             ScheduleBean bean = new ScheduleBean();
             bean.setSubject("Math");
             bean.setDayOfWeek(DayOfWeek.Mon);
@@ -246,12 +220,83 @@ public class ScheduleFragment extends Fragment {
             bean.setTimeFrom("10:30");
             bean.setTimeTo("11:15");
             ScheduleJson scheduleJson = new ScheduleJson();
-            scheduleJson.setFaculty(new Faculty(String.valueOf(i),"Факультет"+i));
-            scheduleJson.setEducationGroup(new EducationGroup(String.valueOf(i),"K4567"));
+            scheduleJson.setFaculty(new Faculty(String.valueOf(i), "Факультет" + i));
+            scheduleJson.setEducationGroup(new EducationGroup(String.valueOf(i), "K4567"));
             scheduleJson.setScheduleBean(bean);
             list.add(scheduleJson);
         }
         return list;
     }
 
+    private void checkViewModel(View root, FrameLayout frameSchedule) {
+        if (scheduleViewModel.isEmpty()) {
+            initFrameLayout(frameSchedule, initFacultyRecyclerTextView(root, scheduleViewModel));
+        }
+        scheduleViewModel.getIsChangeScreen().observe(this, item -> {
+           if (item) {
+                switch (Objects.requireNonNull(scheduleViewModel.getScreen().getValue())) {
+                    case FACULTY_LIST_SCREEN: {
+                        Toast.makeText(root.getContext(), "faculty_list_screen", Toast.LENGTH_SHORT).show();
+                        if(scheduleViewModel.isReverse()){
+                          throw new IllegalArgumentException("Type cannot reverse with FACULTY_LIST_SCREEN");
+                        }else {
+                            initFrameLayout(frameSchedule, initGroupTextView(root, scheduleViewModel));
+
+                        }
+                        break;
+                    }
+                    case GROUP_LIST_SCREEN: {
+                        Toast.makeText(root.getContext(), "group_list_screen", Toast.LENGTH_SHORT).show();
+                        if(scheduleViewModel.isReverse()) {
+                            initFrameLayout(frameSchedule, initFacultyRecyclerTextView(root, scheduleViewModel));
+                        }else  initFrameLayout(frameSchedule, initSchedulerTextView(root, scheduleViewModel));
+                        break;
+                    }
+
+                    case SCHEDULE_LIST_SCREEN: {
+                        Toast.makeText(root.getContext(), "schedule_list_screen", Toast.LENGTH_SHORT).show();
+                        if(scheduleViewModel.isReverse()) {
+                            initFrameLayout(frameSchedule, initGroupTextView(root, scheduleViewModel));
+                        }else {
+                           // initFrameLayout(frameSchedule, initFacultyRecyclerTextView(root, scheduleViewModel));
+                        }
+                        break;
+                    }
+                    default:
+                        Toast.makeText(root.getContext(), "ERROR", Toast.LENGTH_SHORT).show();
+
+                }
+            }
+        });
+    }
+
+    @Override
+    public boolean onBackPressed() {
+        ScheduleViewModel.Screen screen = scheduleViewModel.getScreen().getValue();
+        Log.d(TAG, "backPressed in ScheduleFragment");
+        scheduleViewModel.setSwitchType(ScheduleViewModel.SwitchType.REVERSE);
+        switch (Objects.requireNonNull(screen)) {
+            case SCHEDULE_LIST_SCREEN: {
+                scheduleViewModel.setSchedule(null);
+                Log.d(TAG, Objects.requireNonNull(scheduleViewModel.getGroupNumber().getValue()));
+                scheduleViewModel.setIsChangeScreen(true);
+                return false;
+
+            }
+            case FACULTY_LIST_SCREEN: {
+                scheduleViewModel.setFaculty("");
+
+                return true;
+            }
+            case GROUP_LIST_SCREEN: {
+                scheduleViewModel.setGroupNumber("");
+                Log.d(TAG, Objects.requireNonNull(scheduleViewModel.getFaculty().getValue()));
+                scheduleViewModel.setIsChangeScreen(true);
+                return false;
+            }
+            default:return false;
+
+        }
+
+    }
 }

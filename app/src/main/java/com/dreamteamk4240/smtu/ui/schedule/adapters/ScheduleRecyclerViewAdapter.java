@@ -33,6 +33,9 @@ public class ScheduleRecyclerViewAdapter extends RecyclerView.Adapter<ScheduleRe
         this.context = context;
         this.scheduleViewModel = scheduleViewModel;
         this.groupNumber = groupNumber;
+        scheduleViewModel.setScreen(ScheduleViewModel.Screen.SCHEDULE_LIST_SCREEN);
+        scheduleViewModel.setSwitchType(ScheduleViewModel.SwitchType.DIRECTLY);
+        scheduleViewModel.setIsChangeScreen(false);
 
     }
 
@@ -41,9 +44,8 @@ public class ScheduleRecyclerViewAdapter extends RecyclerView.Adapter<ScheduleRe
     @Override
     public ScheduleRecyclerViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.schedule, parent, false);
-        ScheduleRecyclerViewHolder ScheduleRecyclerViewHolder = new ScheduleRecyclerViewHolder(view);
 
-        return ScheduleRecyclerViewHolder;
+        return new ScheduleRecyclerViewHolder(view);
     }
 
     @Override
@@ -57,14 +59,10 @@ public class ScheduleRecyclerViewAdapter extends RecyclerView.Adapter<ScheduleRe
 
         holder.dayOfWeekImage.setText(dayOfWeekConverter.getNameByDayOfWeek(schedules.get(position).getDayOfWeekImage()));
 
-        holder.schedule_item.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Log.d(TAG, "Clicked on " + position + " position");
-                scheduleViewModel.setSchedule(null);
-                scheduleViewModel.setScreen(ScheduleViewModel.Screen.SCHEDULE_LIST_SCREEN);
-            }
+        holder.schedule_item.setOnClickListener(v -> {
+            Log.d(TAG, "Clicked on " + position + " position");
+            scheduleViewModel.setSchedule(null);
+            //scheduleViewModel.setScreen(ScheduleViewModel.Screen.SCHEDULE_LIST_SCREEN);
         });
     }
 

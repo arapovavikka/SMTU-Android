@@ -11,12 +11,13 @@ import java.util.ArrayList;
 public class GroupNumberRecyclerViewAdapter extends TextRecyclerViewAdapter {
     public GroupNumberRecyclerViewAdapter(ArrayList<String> datas, Context context, ScheduleViewModel scheduleViewModel) {
         super(datas, context, scheduleViewModel);
+        scheduleViewModel.setScreen(ScheduleViewModel.Screen.GROUP_LIST_SCREEN);
     }
 
     @Override
     void onClickAction(View v, int position) {
         Log.d(TAG,"Clicked on "+position+" position");
         scheduleViewModel.setGroupNumber(datas.get(position));
-        scheduleViewModel.setScreen(ScheduleViewModel.Screen.GROUP_LIST_SCREEN);
+        scheduleViewModel.setIsChangeScreen(true);
     }
 }

@@ -6,6 +6,8 @@ import androidx.lifecycle.ViewModel;
 
 import com.dreamteamk4240.smtu.data.ScheduleJson;
 
+import java.util.Objects;
+
 public class ScheduleViewModel extends ViewModel {
 
     private final  MutableLiveData<String> mText = new MutableLiveData<>();
@@ -13,6 +15,9 @@ public class ScheduleViewModel extends ViewModel {
     private final  MutableLiveData<String> groupNumber = new MutableLiveData<>();
     private final  MutableLiveData<ScheduleJson> scheduleJson = new MutableLiveData<>();
     private final  MutableLiveData<Screen> screen = new MutableLiveData<>();
+    private final  MutableLiveData<Boolean> isChangeScreen = new MutableLiveData<>();
+    private final  MutableLiveData<SwitchType> switchType = new MutableLiveData<>();
+
 
 
     public ScheduleViewModel() {
@@ -20,9 +25,6 @@ public class ScheduleViewModel extends ViewModel {
 
     public LiveData<String> getText() {
         return mText;
-    }
-    public void setmText(String type){
-        mText.setValue(type);
     }
     public LiveData<String> getFaculty() {
         return faculty;
@@ -43,14 +45,39 @@ public class ScheduleViewModel extends ViewModel {
         this.screen.setValue(screen);
     }
     public LiveData<Screen> getScreen(){
-       return screen;
+        return screen;
+    }
+
+    public  boolean isEmpty(){
+        return screen.getValue()==  null;
+    }
+    public LiveData<Boolean> getIsChangeScreen(){
+        return isChangeScreen;
+    }
+    public void setIsChangeScreen(Boolean changeScreen){
+        isChangeScreen.setValue(changeScreen);
+    }
+    public LiveData<SwitchType>  getSwitchType(){
+        return switchType;
+    }
+
+    public boolean isReverse(){
+        return  Objects.requireNonNull(switchType.getValue()).equals(SwitchType.REVERSE);
+    }
+    public void setSwitchType(SwitchType switchType){
+        this.switchType.setValue(switchType);
     }
 
 
     public enum  Screen{
+        EMPTY_SCREEN,
         FACULTY_LIST_SCREEN,
         GROUP_LIST_SCREEN,
         SCHEDULE_LIST_SCREEN
+    }
+    public enum SwitchType{
+        DIRECTLY,
+        REVERSE
     }
 
 
