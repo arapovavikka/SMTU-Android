@@ -43,4 +43,7 @@
     <string name="curriculum">Учебный план</string>
     <string name="head_of_department">Заведущий кафедрой</string>
     <string name="bachelor">Бакалавриат</string>
+    <string name="training_courses">Подготовительные курсы</string>
+    <string name="selection_committee">Приемная комиссия</string>
+    <string name="department_of_payment">Отдел оплаты образовательных услуг</string>
 </resources>
