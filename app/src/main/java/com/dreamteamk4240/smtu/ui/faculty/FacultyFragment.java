@@ -12,7 +12,6 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -72,6 +71,7 @@ public class FacultyFragment extends Fragment implements BackButtonClick {
 
         return root;
     }
+
     private void checkViewModel() {
         if (facultyViewModel.isEmpty()) {
             initFrameLayout(frameFaculty, getFacultyAndDepartmentView(root.getContext()));
@@ -80,7 +80,7 @@ public class FacultyFragment extends Fragment implements BackButtonClick {
             if (item) {
                 switch (Objects.requireNonNull(facultyViewModel.getScreen().getValue())) {
                     case FACULTY_DEPARTMENT_SCREEN: {
-                       // Toast.makeText(root.getContext(), "faculty_department_screen", Toast.LENGTH_SHORT).show();
+                        // Toast.makeText(root.getContext(), "faculty_department_screen", Toast.LENGTH_SHORT).show();
                         if (facultyViewModel.isReverse()) {
                             throw new IllegalArgumentException("Type cannot reverse with FACULTY_LIST_SCREEN");
                         } else {
@@ -96,13 +96,13 @@ public class FacultyFragment extends Fragment implements BackButtonClick {
                             initFrameLayout(frameFaculty, getFacultyAndDepartmentView(root.getContext()));
                         } else {
                             getSpecialiseListScreen(root.getContext(), FacultyViewModel.Screen.SPECIAL_LIST_SCREEN);
-                            initFrameLayout(frameFaculty,mainDepartmentView);
+                            initFrameLayout(frameFaculty, mainDepartmentView);
                         }
                         break;
                     }
 
                     case SPECIAL_LIST_SCREEN: {
-                       // Toast.makeText(root.getContext(), "schedule_list_screen", Toast.LENGTH_SHORT).show();
+                        // Toast.makeText(root.getContext(), "schedule_list_screen", Toast.LENGTH_SHORT).show();
                         if (facultyViewModel.isReverse()) {
                             getViewDepartmentDescription(FacultyViewModel.Screen.DEPARTMENT_DESCRIPTION_SCREEN);
                         } else {
@@ -113,33 +113,34 @@ public class FacultyFragment extends Fragment implements BackButtonClick {
                         break;
                     }
                     case DEPARTMENT_HISTORY_SCREEN: {
-                       // Toast.makeText(root.getContext(), "schedule_list_screen", Toast.LENGTH_SHORT).show();
+                        // Toast.makeText(root.getContext(), "schedule_list_screen", Toast.LENGTH_SHORT).show();
                         if (facultyViewModel.isReverse()) {
                             getSpecialiseListScreen(root.getContext(), FacultyViewModel.Screen.SPECIAL_LIST_SCREEN);
 
                         } else {
                             getImageRecyclerView(root.getContext(), FacultyViewModel.Screen.IMAGE_PERSON_SCREEN);
                         }
-                        initFrameLayout(frameFaculty,mainDepartmentView );
+                        initFrameLayout(frameFaculty, mainDepartmentView);
                         break;
                     }
                     case IMAGE_PERSON_SCREEN: {
-                       // Toast.makeText(root.getContext(), "schedule_list_screen", Toast.LENGTH_SHORT).show();
+                        // Toast.makeText(root.getContext(), "schedule_list_screen", Toast.LENGTH_SHORT).show();
                         if (facultyViewModel.isReverse()) {
                             getViewAboutDepartment(FacultyViewModel.Screen.DEPARTMENT_HISTORY_SCREEN);
                         } else {
                             // initFrameLayout(frameSchedule, initFacultyRecyclerTextView(root, scheduleViewModel));
                         }
-                        initFrameLayout(frameFaculty,mainDepartmentView );
+                        initFrameLayout(frameFaculty, mainDepartmentView);
                         break;
                     }
                     default:
-                      //  Toast.makeText(root.getContext(), "ERROR", Toast.LENGTH_SHORT).show();
+                        //  Toast.makeText(root.getContext(), "ERROR", Toast.LENGTH_SHORT).show();
 
                 }
             }
         });
     }
+
     private void initFrameLayout(FrameLayout frameLayout, View view) {
 
 //        frameLayout.addView(progressBarView);
@@ -220,7 +221,7 @@ public class FacultyFragment extends Fragment implements BackButtonClick {
                         " защиты информации», срок обучения - 5 лет, квалификация – специалист по защите" +
                         " информации (последний выпуск - 2015 г.");
         photo.setImageResource(R.drawable.p100629);
-        implicitIntent(telephone,mail,address);
+        implicitIntent(telephone, mail, address);
         frameDepartment.addView(departmentLayout);
 
     }
@@ -368,21 +369,24 @@ public class FacultyFragment extends Fragment implements BackButtonClick {
             button2.setOnClickListener(v -> facultyViewModel.setIsChangeScreen(true));
         }
     }
-/*
-FACULTY_DEPARTMENT_SCREEN,
-        DEPARTMENT_DESCRIPTION_SCREEN,
-        SPECIAL_LIST_SCREEN,
-        DEPARTMENT_HISTORY_SCREEN,
-        IMAGE_PERSON_SCREEN
- */
 
-private void implicitIntent(TextView phone,TextView email, TextView position){
+    private void implicitIntent(TextView phone, TextView email, TextView position) {
 
-//    phone.setOnClickListener(v->{
-//        Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("+78124940980"));
-//        startActivity(intent);
-//    });
-}
+        phone.setOnClickListener(v -> {
+            Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + phone.getText().toString()));
+            startActivity(intent);
+        });
+        email.setOnClickListener(v -> {
+            Intent intent = new Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:" + email.getText().toString()));
+            startActivity(intent);
+        });
+        position.setOnClickListener(v -> {
+            String geoUrl = String.format("geo:0,0?q=%s", position.getText().toString());
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(geoUrl));
+            startActivity(intent);
+        });
+    }
+
     @Override
     public boolean onBackPressed() {
         FacultyViewModel.Screen screen = facultyViewModel.getScreen().getValue();
@@ -417,7 +421,8 @@ private void implicitIntent(TextView phone,TextView email, TextView position){
                 facultyViewModel.setIsChangeScreen(true);
                 return false;
             }
-            default:return false;
+            default:
+                return false;
 
         }
     }
