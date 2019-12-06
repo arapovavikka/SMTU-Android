@@ -17,10 +17,25 @@ public class ScheduleViewModel extends ViewModel {
     private final  MutableLiveData<Screen> screen = new MutableLiveData<>();
     private final  MutableLiveData<Boolean> isChangeScreen = new MutableLiveData<>();
     private final  MutableLiveData<SwitchType> switchType = new MutableLiveData<>();
+    private final  MutableLiveData<Integer> courseNumber = new MutableLiveData<>();
+    private final  MutableLiveData<WeekType> weekType = new MutableLiveData<>();
+
+    public MutableLiveData<WeekType> getWeekType() {
+        return weekType;
+    }
+    public void setWeekType(WeekType weekType) {
+         this.weekType.setValue(weekType);
+    }
 
 
-
+    public LiveData<Integer> getCourseNumber() {
+        return courseNumber;
+    }
     public ScheduleViewModel() {
+    }
+
+    public void setCourseNumber(int courseNumber){
+        this.courseNumber.setValue(courseNumber);
     }
 
     public LiveData<String> getText() {
@@ -77,6 +92,10 @@ public class ScheduleViewModel extends ViewModel {
     public enum SwitchType{
         DIRECTLY,
         REVERSE
+    }
+    public enum WeekType{
+        UP,
+        DOWN
     }
 
 

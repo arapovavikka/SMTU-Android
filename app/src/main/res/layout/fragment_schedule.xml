@@ -5,11 +5,11 @@
     android:background="@color/main_white"
     android:layout_height="match_parent">
 
-    <include
-        android:id="@+id/upper_button_include"
-        layout="@layout/navigation_item"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+   <LinearLayout
+       android:id="@+id/upper_button_include"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:orientation="horizontal" />
 
     <FrameLayout
         android:id="@+id/frame_schedule"

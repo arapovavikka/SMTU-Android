@@ -359,8 +359,8 @@ public class FacultyFragment extends Fragment implements BackButtonClick {
     }
 
     private void initUpperButton(String button1Text, String button2Text) {
-        Button button1 = mainDepartmentView.findViewById(R.id.round_button1);
-        Button button2 = mainDepartmentView.findViewById(R.id.round_button2);
+        Button button1 = mainDepartmentView.findViewById(R.id.navigation_button_1);
+        Button button2 = mainDepartmentView.findViewById(R.id.navigation_button_2);
         button1.setText(button1Text);
         if (button2Text.isEmpty()) {
             button2.setVisibility(View.INVISIBLE);

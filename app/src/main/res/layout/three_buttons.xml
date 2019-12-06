@@ -18,7 +18,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
     <Button
-        android:id="@+id/nav_1"
+        android:id="@+id/button_nav_1"
         android:layout_width="wrap_content"
         android:layout_marginRight="10dp"
         android:layout_height="wrap_content"
@@ -27,14 +27,14 @@
         android:layout_marginLeft="14dp"
         android:layout_marginTop="6dp"
         android:textSize="14sp"
-        android:background="@drawable/rounded_button_checked"
+        android:background="@drawable/button_navigation"
         android:text="Бакалавриат"
         android:textColor="@color/main_white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/nav_2"
+        android:id="@+id/button_nav_2"
         android:layout_width="wrap_content"
         android:layout_marginRight="10dp"
         android:layout_height="wrap_content"
@@ -44,12 +44,12 @@
         android:layout_marginLeft="14dp"
         android:layout_marginTop="6dp"
         android:textSize="14sp"
-        android:background="@drawable/rounded_button_unchecked"
+        android:background="@drawable/button_navigation"
         android:text="Специалитет"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
     <Button
-        android:id="@+id/nav_3"
+        android:id="@+id/button_nav_3"
         android:layout_width="wrap_content"
         android:layout_marginRight="10dp"
         android:layout_height="wrap_content"
@@ -59,22 +59,7 @@
         android:layout_marginLeft="14dp"
         android:layout_marginTop="6dp"
         android:textSize="14sp"
-        android:background="@drawable/rounded_button_unchecked"
-        android:text="Специалитет"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-    <Button
-        android:id="@+id/nav_4"
-        android:layout_width="wrap_content"
-        android:layout_marginRight="10dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="6dp"
-        android:layout_marginStart="14dp"
-        android:textColor="@color/main_white"
-        android:layout_marginLeft="14dp"
-        android:layout_marginTop="6dp"
-        android:textSize="14sp"
-        android:background="@drawable/rounded_button_unchecked"
+        android:background="@drawable/button_navigation"
         android:text="Специалитет"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

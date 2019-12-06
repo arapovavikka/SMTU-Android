@@ -17,7 +17,6 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.dreamteamk4240.smtu.interfaces.BackButtonClick;
 import com.dreamteamk4240.smtu.R;
 import com.dreamteamk4240.smtu.data.DayOfWeek;
 import com.dreamteamk4240.smtu.data.EducationGroup;
@@ -25,12 +24,14 @@ import com.dreamteamk4240.smtu.data.Faculty;
 import com.dreamteamk4240.smtu.data.Schedule;
 import com.dreamteamk4240.smtu.data.ScheduleBean;
 import com.dreamteamk4240.smtu.data.ScheduleJson;
+import com.dreamteamk4240.smtu.interfaces.BackButtonClick;
 import com.dreamteamk4240.smtu.ui.schedule.adapters.FacultyRecyclerViewAdapter;
 import com.dreamteamk4240.smtu.ui.schedule.adapters.GroupNumberRecyclerViewAdapter;
 import com.dreamteamk4240.smtu.ui.schedule.adapters.ScheduleRecyclerViewAdapter;
 import com.dreamteamk4240.smtu.ui.schedule.adapters.TextRecyclerViewAdapter;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Objects;
@@ -45,6 +46,11 @@ public class ScheduleFragment extends Fragment implements BackButtonClick {
     private  LayoutInflater inflater ;
     private  ViewGroup container ;
     private View upperButtonsView;
+    private LinearLayout upper_button_include;
+    private View two_button;
+    private View four_button;
+    private View three_button;
+    private FrameLayout frameSchedule;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -56,28 +62,20 @@ public class ScheduleFragment extends Fragment implements BackButtonClick {
 
          root = inflater.inflate(R.layout.fragment_schedule, container, false);
         View loadingView = inflater.inflate(R.layout.loading, container, false);
-        FrameLayout frameSchedule = root.findViewById(R.id.frame_schedule);
+         frameSchedule = root.findViewById(R.id.frame_schedule);
+        upper_button_include= root.findViewById(R.id.upper_button_include);
+        two_button = inflater.inflate(R.layout.navigation_item, container, false);
+        four_button = inflater.inflate(R.layout.four_buttons, container, false);
+        three_button = inflater.inflate(R.layout.three_buttons, container, false);
         //upperButtonsView = getUpperButtonsView();
        // initUpperButtons("","");
         //frameSchedule.addView(scroll);
         //LinearLayout progressBar = loadingView.findViewById(R.id.progress_bar);
-       checkViewModel(frameSchedule);
+        initThreeUpperButtons(new ArrayList<>(Arrays.asList("Бакалавриат","Специалитет","Магистратура")));
+       checkViewModel();
 
         return root;
     }
-//    private void initUpperButtons(String button1Text, String button2Text) {
-//        Button button3 = root.findViewById(R.id.button3);
-//        Button button4 = root.findViewById(R.id.button4);
-//        button3.setVisibility(View.INVISIBLE);
-//        button4.setVisibility(View.INVISIBLE);
-//       // button1.setText(button1Text);
-////        if (button2Text.isEmpty()) {
-////            button2.setVisibility(View.INVISIBLE);
-////        } else {
-////            button2.setText(button2Text);
-////            button2.setOnClickListener(v -> facultyViewModel.setIsChangeScreen(true));
-////        }
-//    }
     private View getUpperButtonsView() {
         return   root.findViewById(R.id.upper_button_include);
     }
@@ -197,7 +195,9 @@ public class ScheduleFragment extends Fragment implements BackButtonClick {
 
 
     private View initGroupTextView(View root, ScheduleViewModel scheduleViewModel) {
+        int courseNumber = scheduleViewModel.getCourseNumber().getValue();
         Log.d(TAG, "Initialise RecyclerView");
+        scheduleViewModel.setWeekType(ScheduleViewModel.WeekType.UP);
         RecyclerView recyclerView = new RecyclerView(root.getContext());
         TextRecyclerViewAdapter scheduleAdapter = new GroupNumberRecyclerViewAdapter((ArrayList<String>) map.get(scheduleViewModel.getFaculty().getValue()), root.getContext(), scheduleViewModel);
         recyclerView.setAdapter(scheduleAdapter);
@@ -207,6 +207,7 @@ public class ScheduleFragment extends Fragment implements BackButtonClick {
 
     private View initSchedulerTextView(View root, ScheduleViewModel scheduleViewModel) {
         Log.d(TAG, "Initialise RecyclerView");
+        ScheduleViewModel.WeekType weekType = scheduleViewModel.getWeekType().getValue();
         //RecyclerView recyclerView = root.findViewById(R.id.recyclerView_list);
         RecyclerView recyclerView = new RecyclerView(root.getContext());
         ScheduleRecyclerViewAdapter scheduleAdapter = new ScheduleRecyclerViewAdapter(getTestDataForSchRecyclerView(), root.getContext(), scheduleViewModel, scheduleViewModel.getGroupNumber().getValue());
@@ -257,8 +258,9 @@ public class ScheduleFragment extends Fragment implements BackButtonClick {
         return list;
     }
 
-    private void checkViewModel(FrameLayout frameSchedule) {
+    private void checkViewModel() {
         if (scheduleViewModel.isEmpty()) {
+            initThreeUpperButtons(new ArrayList<>(Arrays.asList("Бакалавриат","Специалитет","Магистратура")));
             initFrameLayout(frameSchedule, initFacultyRecyclerTextView(root, scheduleViewModel));
 
         }
@@ -270,6 +272,7 @@ public class ScheduleFragment extends Fragment implements BackButtonClick {
                         if(scheduleViewModel.isReverse()){
                           throw new IllegalArgumentException("Type cannot reverse with FACULTY_LIST_SCREEN");
                         }else {
+                            initFourUpperButtons(new ArrayList<>(Arrays.asList("1 курс","2 курс","3 курс","4 курс")));
                             initFrameLayout(frameSchedule, initGroupTextView(root, scheduleViewModel));
 
                         }
@@ -278,14 +281,20 @@ public class ScheduleFragment extends Fragment implements BackButtonClick {
                     case GROUP_LIST_SCREEN: {
                        // Toast.makeText(root.getContext(), "group_list_screen", Toast.LENGTH_SHORT).show();
                         if(scheduleViewModel.isReverse()) {
+                            initThreeUpperButtons(new ArrayList<>(Arrays.asList("Бакалавриат","Специалитет","Магистратура")));
                             initFrameLayout(frameSchedule, initFacultyRecyclerTextView(root, scheduleViewModel));
-                        }else  initFrameLayout(frameSchedule, initSchedulerTextView(root, scheduleViewModel));
+                        }else {
+                            initTwoUpperButtons(new ArrayList<>(Arrays.asList("Верхняя","Нижняя")));
+                            initFrameLayout(frameSchedule, initSchedulerTextView(root, scheduleViewModel));
+
+                        }
                         break;
                     }
 
                     case SCHEDULE_LIST_SCREEN: {
                        // Toast.makeText(root.getContext(), "schedule_list_screen", Toast.LENGTH_SHORT).show();
                         if(scheduleViewModel.isReverse()) {
+                            initFourUpperButtons(new ArrayList<>(Arrays.asList("1 курс","2 курс","3 курс","4 курс")));
                             initFrameLayout(frameSchedule, initGroupTextView(root, scheduleViewModel));
                         }else {
                            // initFrameLayout(frameSchedule, initFacultyRecyclerTextView(root, scheduleViewModel));
@@ -300,7 +309,102 @@ public class ScheduleFragment extends Fragment implements BackButtonClick {
         });
     }
 
+    private void initThreeUpperButtons(ArrayList<String> buttonsText) {
+        if(buttonsText.size()==3) {
+            Button button1 = three_button.findViewById(R.id.button_nav_1);
+            Button button2 = three_button.findViewById(R.id.button_nav_2);
+            Button button3 = three_button.findViewById(R.id.button_nav_3);
 
+            button1.setText(buttonsText.get(0));
+            button2.setText(buttonsText.get(1));
+            button3.setText(buttonsText.get(2));
+            button1.setSelected(true);
+            button2.setFocusable(false);
+            button3.setFocusable(false);
+//            button1.setOnClickListener(v->{
+//                Toast.makeText(root.getContext(),"pressed 1", Toast.LENGTH_SHORT).show();
+//            });
+//            button2.setOnClickListener(v->{
+//                Toast.makeText(root.getContext(),"pressed 2", Toast.LENGTH_SHORT).show();
+//            });
+//            button3.setOnClickListener(v->{
+//                Toast.makeText(root.getContext(),"pressed 3", Toast.LENGTH_SHORT).show();
+//            });
+            upper_button_include.removeAllViews();
+            upper_button_include.addView(three_button);
+        }
+    }
+
+    private void initTwoUpperButtons(ArrayList<String> buttonsText) {
+        if(buttonsText.size()==2) {
+            Button button1 = two_button.findViewById(R.id.navigation_button_1);
+            Button button2 = two_button.findViewById(R.id.navigation_button_2);
+
+            button1.setText(buttonsText.get(0));
+            button2.setText(buttonsText.get(1));
+            scheduleViewModel.setWeekType(ScheduleViewModel.WeekType.UP);
+            button1.setOnClickListener(v->{
+                if(scheduleViewModel.getWeekType().getValue().equals(ScheduleViewModel.WeekType.DOWN)) {
+                    scheduleViewModel.setWeekType(ScheduleViewModel.WeekType.UP);
+                    initFrameLayout(frameSchedule, initSchedulerTextView(root, scheduleViewModel));
+                    Toast.makeText(root.getContext(), "pressed UP", Toast.LENGTH_SHORT).show();
+                }
+            });
+            button2.setOnClickListener(v-> {
+                if (scheduleViewModel.getWeekType().getValue().equals(ScheduleViewModel.WeekType.UP)) {
+                    scheduleViewModel.setWeekType(ScheduleViewModel.WeekType.DOWN);
+                    initFrameLayout(frameSchedule, initSchedulerTextView(root, scheduleViewModel));
+                    Toast.makeText(root.getContext(), "pressed DOWN", Toast.LENGTH_SHORT).show();
+                }
+            });
+            upper_button_include.removeAllViews();
+            upper_button_include.addView(two_button);
+        }
+    }
+    private void initFourUpperButtons(ArrayList<String> buttonsText) {
+        if(buttonsText.size()==4) {
+            Button button1 = four_button.findViewById(R.id.nav_1);
+            Button button2 = four_button.findViewById(R.id.nav_2);
+            Button button3 = four_button.findViewById(R.id.nav_3);
+            Button button4 = four_button.findViewById(R.id.nav_4);
+
+                    button1.setText(buttonsText.get(0));
+                    button2.setText(buttonsText.get(1));
+                    button3.setText(buttonsText.get(2));
+                    button4.setText(buttonsText.get(3));
+                   scheduleViewModel.setCourseNumber(1);
+                    button1.setOnClickListener(v->{
+                        if(scheduleViewModel.getCourseNumber().getValue()!=1) {
+                            Toast.makeText(root.getContext(), "prev courseNumber" +
+                                    scheduleViewModel.getCourseNumber().getValue(), Toast.LENGTH_SHORT).show();
+                            scheduleViewModel.setCourseNumber(1);
+                            initFrameLayout(frameSchedule, initGroupTextView(root, scheduleViewModel));
+                        }});
+            button2.setOnClickListener(v->{
+                if(scheduleViewModel.getCourseNumber().getValue()!=2) {
+                Toast.makeText(root.getContext(),"prev courseNumber" +
+                                scheduleViewModel.getCourseNumber().getValue(), Toast.LENGTH_SHORT).show();
+                scheduleViewModel.setCourseNumber(2);
+                initFrameLayout(frameSchedule, initGroupTextView(root, scheduleViewModel));
+            }});
+            button3.setOnClickListener(v->{
+                if(scheduleViewModel.getCourseNumber().getValue()!=3) {
+                Toast.makeText(root.getContext(),"prev courseNumber" +
+                        scheduleViewModel.getCourseNumber().getValue(), Toast.LENGTH_SHORT).show();
+                scheduleViewModel.setCourseNumber(3);
+                initFrameLayout(frameSchedule, initGroupTextView(root, scheduleViewModel));
+            }});
+            button4.setOnClickListener(v->{
+                if(scheduleViewModel.getCourseNumber().getValue()!=4) {
+                    Toast.makeText(root.getContext(), "prev courseNumber" +
+                            scheduleViewModel.getCourseNumber().getValue(), Toast.LENGTH_SHORT).show();
+                    scheduleViewModel.setCourseNumber(4);
+                    initFrameLayout(frameSchedule, initGroupTextView(root, scheduleViewModel));
+                }});
+            upper_button_include.removeAllViews();
+            upper_button_include.addView(four_button);
+        }
+    }
 
 
     @Override
