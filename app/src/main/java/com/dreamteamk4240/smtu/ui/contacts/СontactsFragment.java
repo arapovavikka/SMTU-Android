@@ -14,6 +14,9 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.navigation.NavDirections;
+import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
 
 import com.dreamteamk4240.smtu.R;
 
@@ -37,9 +40,12 @@ public class СontactsFragment extends Fragment {
         // получаем экземпляр FragmentTransaction
 
 
+        //Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
+        NavDirections action = СontactsFragmentDirections.actionNavContactsToNavContactsMap();
+        Navigation.findNavController(getActivity(), R.id.nav_host_fragment).navigate(action);
 
-        Intent firstpage= new Intent(getActivity(), MapFragment.class);
-        getActivity().startActivity(firstpage);
+        //Intent firstpage= new Intent(getActivity(), MapFragment.class);
+        //getActivity().startActivity(firstpage);
         return new View(getActivity());
     }
 }
