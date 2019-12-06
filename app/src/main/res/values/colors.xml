@@ -9,5 +9,6 @@
     <color name="main_white">#FFFFFF</color>
     <color name="background_image">#DADADA</color>
     <color name="person_text_color">#413DDC</color>
+    <color name="button_color_checked">#01A39D</color>
 
 </resources>

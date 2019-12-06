@@ -1,40 +1,38 @@
-package com.dreamteamk4240.smtu.twoLevelList;
+package com.dreamteamk4240.smtu.ui.faculty.recyclerView;
 
 import android.view.View;
 import android.view.animation.RotateAnimation;
-import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.dreamteamk4240.smtu.R;
+import com.dreamteamk4240.smtu.twoLevelList.FacultyItem;
+import com.dreamteamk4240.smtu.twoLevelList.ParentViewHolder;
 
-public class FacultyViewHolder extends ParentViewHolder {
+public class EducationTypeViewHolder extends ParentViewHolder {
 
     private static final float INITIAL_POSITION = 0.0f;
     private static final float ROTATED_POSITION = 180f;
 
-    private final ImageView mArrowExpandImageView;
-    private TextView facultyTextView;
 
-    public FacultyViewHolder(View itemView) {
+    private TextView educationTypeTextView;
+    private LinearLayout educationTypeLayout;
+
+    public EducationTypeViewHolder(View itemView) {
         super(itemView);
-        facultyTextView = (TextView) itemView.findViewById(R.id.tv_movie_category);
+        educationTypeTextView = itemView.findViewById(R.id.education_type);
+        educationTypeLayout = itemView.findViewById(R.id.education_type_layout);
 
-        mArrowExpandImageView = (ImageView) itemView.findViewById(R.id.iv_arrow_expand);
     }
 
     public void bind(FacultyItem facultyItem) {
-        facultyTextView.setText(facultyItem.getName());
+        educationTypeTextView.setText(facultyItem.getName());
     }
 
     @Override
     public void setExpanded(boolean expanded) {
         super.setExpanded(expanded);
 
-        if (expanded) {
-            mArrowExpandImageView.setRotation(ROTATED_POSITION);
-        } else {
-            mArrowExpandImageView.setRotation(INITIAL_POSITION);
-        }
 
     }
 
@@ -57,7 +55,6 @@ public class FacultyViewHolder extends ParentViewHolder {
 
         rotateAnimation.setDuration(200);
         rotateAnimation.setFillAfter(true);
-        mArrowExpandImageView.startAnimation(rotateAnimation);
 
     }
 }

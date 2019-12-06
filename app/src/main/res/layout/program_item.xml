@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/main_white"
+    android:paddingLeft="15dp"
+    android:id="@+id/program_layout"
+    android:paddingTop="14dp"
+    android:paddingRight="0dp"
+    android:paddingStart="19dp"
+    android:paddingEnd="0dp">
+    <TextView
+        android:id="@+id/recycler_item_textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/text_color"
+        android:textSize="16sp"
+        android:text="26.03.02.09 Системы электроэнергетики и автоматизации судов"
+        android:paddingLeft="4dp"
+        android:paddingRight="18dp"
+        android:paddingStart="4dp"
+        android:paddingEnd="18dp">
+
+    </TextView>
+    <View
+        android:id="@+id/row"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="7dp"
+        android:background="@color/line_color"/>
+
+</LinearLayout>

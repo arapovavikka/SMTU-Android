@@ -70,7 +70,6 @@ public class ScheduleViewModel extends ViewModel {
 
 
     public enum  Screen{
-        EMPTY_SCREEN,
         FACULTY_LIST_SCREEN,
         GROUP_LIST_SCREEN,
         SCHEDULE_LIST_SCREEN

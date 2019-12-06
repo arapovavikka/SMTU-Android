@@ -17,7 +17,7 @@
         android:paddingRight="30dp"
         android:paddingEnd="30dp"
         android:layout_height="wrap_content">
-    <TextView android:id="@+id/tv_movie_category"
+    <TextView android:id="@+id/faculty_item"
         android:layout_width="273dp"
         android:layout_height="wrap_content"
         android:text="Факультет кораблестроения и океанотехники "
@@ -40,8 +40,9 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <View
+        android:id="@+id/bottom_text_line"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/line_color"/>
+        android:background="@color/line_color" />
 
 </LinearLayout>

@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:id="@+id/test_view"
+    android:id="@+id/department_item_view"
     android:paddingLeft="14dp"
     android:paddingStart="14dp"
     android:paddingRight="0dp"
@@ -13,7 +13,7 @@
     android:orientation="vertical"
     android:layout_centerVertical="true">
 
-    <TextView android:id="@+id/tv_movies"
+    <TextView android:id="@+id/department_text_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/text_color"
@@ -24,7 +24,7 @@
         android:textSize="20sp"
         android:text="Факультет кораблестроения и океанотехники "/>
     <View
-        android:id="@+id/row"
+        android:id="@+id/bottom_line"
         android:layout_width="match_parent"
         android:layout_height="2dp"
         android:layout_marginTop="12dp"

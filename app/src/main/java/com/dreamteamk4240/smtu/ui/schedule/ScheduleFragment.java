@@ -5,7 +5,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.HorizontalScrollView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -37,20 +40,46 @@ public class ScheduleFragment extends Fragment implements BackButtonClick {
 
     private ScheduleViewModel scheduleViewModel;
     private HashMap<String, Collection<String>> map;
+    private View root ;
+    private  HorizontalScrollView scroll ;
+    private  LayoutInflater inflater ;
+    private  ViewGroup container ;
+    private View upperButtonsView;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         scheduleViewModel =
                 ViewModelProviders.of(this).get(ScheduleViewModel.class);
         map = getTestDataForRecyclerView();
+        this.inflater = inflater;
+        this.container = container;
 
-        View root = inflater.inflate(R.layout.fragment_schedule, container, false);
+         root = inflater.inflate(R.layout.fragment_schedule, container, false);
         View loadingView = inflater.inflate(R.layout.loading, container, false);
         FrameLayout frameSchedule = root.findViewById(R.id.frame_schedule);
+        //upperButtonsView = getUpperButtonsView();
+       // initUpperButtons("","");
+        //frameSchedule.addView(scroll);
         //LinearLayout progressBar = loadingView.findViewById(R.id.progress_bar);
-        checkViewModel(root, frameSchedule);
+       checkViewModel(frameSchedule);
 
         return root;
+    }
+//    private void initUpperButtons(String button1Text, String button2Text) {
+//        Button button3 = root.findViewById(R.id.button3);
+//        Button button4 = root.findViewById(R.id.button4);
+//        button3.setVisibility(View.INVISIBLE);
+//        button4.setVisibility(View.INVISIBLE);
+//       // button1.setText(button1Text);
+////        if (button2Text.isEmpty()) {
+////            button2.setVisibility(View.INVISIBLE);
+////        } else {
+////            button2.setText(button2Text);
+////            button2.setOnClickListener(v -> facultyViewModel.setIsChangeScreen(true));
+////        }
+//    }
+    private View getUpperButtonsView() {
+        return   root.findViewById(R.id.upper_button_include);
     }
 
     private HashMap<String, Collection<String>> getTestDataForRecyclerView() {
@@ -228,15 +257,16 @@ public class ScheduleFragment extends Fragment implements BackButtonClick {
         return list;
     }
 
-    private void checkViewModel(View root, FrameLayout frameSchedule) {
+    private void checkViewModel(FrameLayout frameSchedule) {
         if (scheduleViewModel.isEmpty()) {
             initFrameLayout(frameSchedule, initFacultyRecyclerTextView(root, scheduleViewModel));
+
         }
         scheduleViewModel.getIsChangeScreen().observe(this, item -> {
            if (item) {
                 switch (Objects.requireNonNull(scheduleViewModel.getScreen().getValue())) {
                     case FACULTY_LIST_SCREEN: {
-                        Toast.makeText(root.getContext(), "faculty_list_screen", Toast.LENGTH_SHORT).show();
+                       // Toast.makeText(root.getContext(), "faculty_list_screen", Toast.LENGTH_SHORT).show();
                         if(scheduleViewModel.isReverse()){
                           throw new IllegalArgumentException("Type cannot reverse with FACULTY_LIST_SCREEN");
                         }else {
@@ -246,7 +276,7 @@ public class ScheduleFragment extends Fragment implements BackButtonClick {
                         break;
                     }
                     case GROUP_LIST_SCREEN: {
-                        Toast.makeText(root.getContext(), "group_list_screen", Toast.LENGTH_SHORT).show();
+                       // Toast.makeText(root.getContext(), "group_list_screen", Toast.LENGTH_SHORT).show();
                         if(scheduleViewModel.isReverse()) {
                             initFrameLayout(frameSchedule, initFacultyRecyclerTextView(root, scheduleViewModel));
                         }else  initFrameLayout(frameSchedule, initSchedulerTextView(root, scheduleViewModel));
@@ -254,7 +284,7 @@ public class ScheduleFragment extends Fragment implements BackButtonClick {
                     }
 
                     case SCHEDULE_LIST_SCREEN: {
-                        Toast.makeText(root.getContext(), "schedule_list_screen", Toast.LENGTH_SHORT).show();
+                       // Toast.makeText(root.getContext(), "schedule_list_screen", Toast.LENGTH_SHORT).show();
                         if(scheduleViewModel.isReverse()) {
                             initFrameLayout(frameSchedule, initGroupTextView(root, scheduleViewModel));
                         }else {
@@ -263,12 +293,15 @@ public class ScheduleFragment extends Fragment implements BackButtonClick {
                         break;
                     }
                     default:
-                        Toast.makeText(root.getContext(), "ERROR", Toast.LENGTH_SHORT).show();
+                      //  Toast.makeText(root.getContext(), "ERROR", Toast.LENGTH_SHORT).show();
 
                 }
             }
         });
     }
+
+
+
 
     @Override
     public boolean onBackPressed() {

@@ -8,7 +8,7 @@ import com.dreamteamk4240.smtu.ui.schedule.ScheduleViewModel;
 
 import java.util.ArrayList;
 
-public class FacultyRecyclerViewAdapter extends TextRecyclerViewAdapter {
+public class FacultyRecyclerViewAdapter extends TextRecyclerViewAdapter  {
 
 
     public FacultyRecyclerViewAdapter(ArrayList<String> datas, Context context, ScheduleViewModel scheduleViewModel) {

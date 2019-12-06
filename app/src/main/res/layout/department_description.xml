@@ -2,13 +2,10 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/department_description"
     android:orientation="vertical" android:layout_width="match_parent"
+    android:background="@color/main_white"
     android:layout_height="match_parent">
-    <include
-        android:id="@+id/include"
-        layout="@layout/navigation_item"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
 
     <TextView
         android:layout_width="match_parent"
@@ -34,31 +31,27 @@
         android:paddingStart="9dp">
 
         <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="115dp"
-            android:src="@drawable/p100677"
+            android:id="@+id/department_person_photo"
+            android:layout_width="90dp"
             android:layout_height="131dp"
+            android:src="@drawable/p100677"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <Space
-            android:id="@+id/space_f"
-            android:layout_width="12dp"
-            android:layout_height="match_parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/imageView2"
-            app:layout_constraintTop_toTopOf="parent" />
-
         <LinearLayout
-            android:layout_width="260dp"
-            android:layout_height="match_parent"
+            android:id="@+id/linearLayout3"
+            android:layout_width="235dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginLeft="12dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
+            android:background="@color/main_white"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/space_f"
+            app:layout_constraintStart_toEndOf="@+id/department_person_photo"
             app:layout_constraintTop_toTopOf="parent">
 
 
@@ -66,39 +59,41 @@
                 android:id="@+id/name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="15sp"
                 android:drawablePadding="9dp"
                 android:text="Согонов Сергей Александрович"
-                />
+                android:textSize="15sp" />
 
             <TextView
+                android:id="@+id/telephone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="15sp"
-                android:drawablePadding="9dp"
                 android:drawableStart="@drawable/ic_phone_black_24dp"
                 android:drawableLeft="@drawable/ic_phone_black_24dp"
-                android:text="+7 (812) 494-0980"/>
+                android:drawablePadding="9dp"
+                android:text="+7 (812) 494-0980"
+                android:textSize="15sp" />
 
 
             <TextView
+                android:id="@+id/mail"
                 android:layout_width="match_parent"
-                android:textSize="15sp"
                 android:layout_height="wrap_content"
-                android:drawablePadding="9dp"
                 android:drawableStart="@drawable/ic_mail_black_24dp"
                 android:drawableLeft="@drawable/ic_mail_black_24dp"
-                android:text="mds-sogonov@yandex.ru" />
+                android:drawablePadding="9dp"
+                android:text="mds-sogonov@yandex.ru"
+                android:textSize="15sp" />
 
 
             <TextView
+                android:id="@+id/address"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="15sp"
-                android:drawablePadding="9dp"
                 android:drawableStart="@drawable/ic_room_black_24dp"
                 android:drawableLeft="@drawable/ic_room_black_24dp"
-                android:text="190121, Санкт-Петербург, ул. Лоцманская 3, ауд. А-429." />
+                android:drawablePadding="9dp"
+                android:text="190121, Санкт-Петербург, ул. Лоцманская 3, ауд. А-429."
+                android:textSize="15sp" />
 
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -123,6 +118,7 @@
         android:layout_marginStart="17dp"
         android:layout_marginEnd="4dp" >
     <TextView
+        android:id="@+id/department_text_description"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="10dp"

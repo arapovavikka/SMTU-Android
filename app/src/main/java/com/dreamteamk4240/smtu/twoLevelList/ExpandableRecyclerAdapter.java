@@ -22,6 +22,7 @@ public abstract class ExpandableRecyclerAdapter<PVH extends ParentViewHolder, CV
      * available in {@link ExpandableRecyclerAdapter}
      */
     protected List<Object> mItemList;
+    protected int expandedPosition;
 
     private List<? extends ParentListItem> mParentItemList;
     private ExpandCollapseListener mExpandCollapseListener;
@@ -529,6 +530,7 @@ public abstract class ExpandableRecyclerAdapter<PVH extends ParentViewHolder, CV
     private void expandParentListItem(ParentWrapper parentWrapper, int parentIndex, boolean expansionTriggeredByListItemClick) {
         if (!parentWrapper.isExpanded()) {
             parentWrapper.setExpanded(true);
+            expandedPosition = parentIndex;
 
             List<?> childItemList = parentWrapper.getChildItemList();
             if (childItemList != null) {

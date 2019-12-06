@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:background="@color/main_white"
+    android:id="@+id/navigation_item_id"
+    android:orientation="horizontal"
+    android:paddingBottom="6dp"
+    android:layout_marginRight="10dp"
+    android:layout_height="wrap_content"
+    android:layout_marginEnd="10dp">
+<HorizontalScrollView
+    android:scrollbars="none"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_marginRight="10dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="6dp"
+        android:layout_marginStart="14dp"
+        android:layout_marginLeft="14dp"
+        android:layout_marginTop="6dp"
+        android:textSize="14sp"
+        android:background="@drawable/rounded_button_checked"
+        android:text="Бакалавриат"
+        android:textColor="@color/main_white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_marginRight="10dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="6dp"
+        android:layout_marginStart="14dp"
+        android:textColor="@color/main_white"
+        android:layout_marginLeft="14dp"
+        android:layout_marginTop="6dp"
+        android:textSize="14sp"
+        android:background="@drawable/rounded_button_unchecked"
+        android:text="Специалитет"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="wrap_content"
+        android:layout_marginRight="10dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="6dp"
+        android:layout_marginStart="14dp"
+        android:textColor="@color/main_white"
+        android:layout_marginLeft="14dp"
+        android:layout_marginTop="6dp"
+        android:textSize="14sp"
+        android:background="@drawable/rounded_button_unchecked"
+        android:text="Специалитет"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="wrap_content"
+        android:layout_marginRight="10dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="6dp"
+        android:layout_marginStart="14dp"
+        android:textColor="@color/main_white"
+        android:layout_marginLeft="14dp"
+        android:layout_marginTop="6dp"
+        android:textSize="14sp"
+        android:background="@drawable/rounded_button_unchecked"
+        android:text="Специалитет"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    </LinearLayout>
+</HorizontalScrollView>
+
+
+</LinearLayout>
