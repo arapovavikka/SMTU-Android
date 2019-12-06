@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -28,24 +29,21 @@ public class СontactsFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         сontactsViewModel =
                 ViewModelProviders.of(this).get(СontactsViewModel.class);
-        //View root = inflater.inflate(R.layout.fragment_contacts, container, false);
-        /* textView = root.findViewById(R.id.text_contacts);
-        сontactsViewModel.getText().observe(this, new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
+        View root = inflater.inflate(R.layout.fragment_contacts, container, false);
+        
+        Button mapButton = root.findViewById(R.id.map_open);
+        mapButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                NavDirections action = РЎontactsFragmentDirections.actionNavContactsToNavContactsMap();
+                Navigation.findNavController(getActivity(), R.id.nav_host_fragment).navigate(action);
             }
-        });*/
+        });
 
-        // получаем экземпляр FragmentTransaction
+        return root;
+    }
 
-
-        //Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
-        NavDirections action = СontactsFragmentDirections.actionNavContactsToNavContactsMap();
-        Navigation.findNavController(getActivity(), R.id.nav_host_fragment).navigate(action);
-
-        //Intent firstpage= new Intent(getActivity(), MapFragment.class);
-        //getActivity().startActivity(firstpage);
-        return new View(getActivity());
+    @Override
+    public void onResume() {
+        super.onResume();
     }
 }

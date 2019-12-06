@@ -45,7 +45,10 @@
             app:argType="boolean" />
         <action
             android:id="@+id/action_nav_contacts_to_nav_contacts_map"
-            app:destination="@id/nav_contacts_map" />
+            app:destination="@id/nav_contacts_map"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popExitAnim="@anim/nav_default_exit_anim"
+            app:popUpTo="@+id/nav_faculty" />
     </fragment>
 
     <fragment

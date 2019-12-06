@@ -1,28 +1,25 @@
 package com.dreamteamk4240.smtu.ui.contacts;
 
-import android.media.Image;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.activity.OnBackPressedCallback;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
 
 import com.dreamteamk4240.smtu.R;
-import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
-import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-public class MapFragment extends Fragment {
+public class MapFragment extends Fragment implements OnBackPressedCallback  {
 
     MapView mMapView;
     private GoogleMap googleMap;
@@ -42,6 +39,8 @@ public class MapFragment extends Fragment {
             e.printStackTrace();
         }
 
+        getActivity().addOnBackPressedCallback(getViewLifecycleOwner(),this);
+
         mMapView.getMapAsync(new OnMapReadyCallback() {
             @Override
             public void onMapReady(GoogleMap mMap) {
@@ -53,6 +52,18 @@ public class MapFragment extends Fragment {
             }
         });
 
+
+
         return rootView;
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
+
+    @Override
+    public boolean handleOnBackPressed() {
+        return true;
     }
 }
