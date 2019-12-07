@@ -23,13 +23,13 @@ public class SpecialtiesFragment extends Fragment {
         specialtiesViewModel =
                 ViewModelProviders.of(this).get(SpecialtiesViewModel.class);
         View root = inflater.inflate(R.layout.fragment_specialties, container, false);
-//       // final TextView textView = root.findViewById(R.id.text_specialties);
-//        specialtiesViewModel.getText().observe(this, new Observer<String>() {
-//            @Override
-//            public void onChanged(@Nullable String s) {
-//                textView.setText(s);
-//            }
-//        });
+        final TextView textView = root.findViewById(R.id.name_program);
+        specialtiesViewModel.getText().observe(this, new Observer<String>() {
+            @Override
+            public void onChanged(@Nullable String s) {
+                textView.setText(s);
+            }
+        });
         return root;
     }
 }

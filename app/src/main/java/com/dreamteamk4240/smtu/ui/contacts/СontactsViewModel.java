@@ -43,7 +43,7 @@ public class СontactsViewModel extends ViewModel {
         ArrayList<СontactsViewModel> contacts = new ArrayList<СontactsViewModel>();
         СontactsViewModel contact1 = new СontactsViewModel();
         contact1.name = "Подготовительные курсы";
-        contact1.phones = new String[]{"+7 (937) 720-45-56","+7(999) 529-64-87","+7 (999) 123-65-44"};
+        contact1.phones = new String[]{"+7 (937) 720-45-56","+7 (999) 529-64-87","+7 (999) 123-65-44"};
         contacts.add(contact1);
         contact1 = new СontactsViewModel();
         contact1.name = "Приемная комиссия";

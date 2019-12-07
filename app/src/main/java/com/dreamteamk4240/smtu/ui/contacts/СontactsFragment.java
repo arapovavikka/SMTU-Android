@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -14,8 +15,13 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.navigation.NavDirections;
+import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
 
 import com.dreamteamk4240.smtu.R;
 
@@ -30,12 +36,15 @@ public class СontactsFragment extends Fragment {
         сontactsViewModel =
                 ViewModelProviders.of(this).get(СontactsViewModel.class);
         View root = inflater.inflate(R.layout.contacts, container, false);
-       /* final TextView textView = root.findViewById(R.id.text_contacts);
-        сontactsViewModel.getText().observe(this, new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
+        
+        /*Button mapButton = root.findViewById(R.id.map_open);
+        mapButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                NavDirections action = РЎontactsFragmentDirections.actionNavContactsToNavContactsMap();
+                Navigation.findNavController(getActivity(), R.id.nav_host_fragment).navigate(action);
             }
+        });
+
         }); */
         ArrayList<СontactsViewModel> contactsList = сontactsViewModel.getContacts();
         for(СontactsViewModel item : contactsList) {
@@ -50,11 +59,16 @@ public class СontactsFragment extends Fragment {
         return root;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+    }
+
     public void CreateFragments(LayoutInflater inflater, LinearLayout layout, String[] array, int imageId) {
         int visible = 0;
         if (array.length > 1) {visible = 1;}
         for(String i : array) {
-            View view = inflater.inflate(R.layout.fragment_contacts, layout, false);
+            View view = inflater.inflate(R.layout.contacts, layout, false);
             TextView textViewNumber = view.findViewById(R.id.text_contact);
             textViewNumber.setText(i);
             ImageView imageView = view.findViewById(R.id.image_contact);
@@ -76,7 +90,11 @@ public class СontactsFragment extends Fragment {
                 textViewNumber.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        OpenPhone(((TextView)v).getText().toString());
+                        //OpenPhone(((TextView)v).getText().toString());
+
+                        NavDirections action = РЎontactsFragmentDirections.actionNavContactsToNavContactsMap();
+                        Navigation.findNavController(getActivity(), R.id.nav_host_fragment).navigate(action);
+
                     }
                 });
             ImageView imageView = view.findViewById(R.id.image_contact);

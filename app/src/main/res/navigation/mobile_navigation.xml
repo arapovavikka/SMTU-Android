@@ -39,5 +39,20 @@
         android:id="@+id/nav_contacts"
         android:name="com.dreamteamk4240.smtu.ui.contacts.СontactsFragment"
         android:label="@string/menu_contacts"
-        tools:layout="@layout/fragment_contacts" />
+        tools:layout="@layout/fragment_contacts" >
+        <argument
+            android:name="test"
+            app:argType="boolean" />
+        <action
+            android:id="@+id/action_nav_contacts_to_nav_contacts_map"
+            app:destination="@id/nav_contacts_map"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popExitAnim="@anim/nav_default_exit_anim" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_contacts_map"
+        android:name="com.dreamteamk4240.smtu.ui.contacts.MapFragment"
+        android:label="Учебныe корпуса"
+        tools:layout="@layout/fragment_map" />
 </navigation>
