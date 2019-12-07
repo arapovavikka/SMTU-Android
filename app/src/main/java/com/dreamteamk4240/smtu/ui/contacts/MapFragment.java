@@ -46,7 +46,7 @@ public class MapFragment extends Fragment implements OnBackPressedCallback  {
             public void onMapReady(GoogleMap mMap) {
                 googleMap = mMap;
 
-                LatLng smtuCoord = new LatLng(59.9188905, 30.2760117);
+                LatLng smtuCoord = new LatLng(59.85077878, 30.22267342);
                 googleMap.addMarker(new MarkerOptions().position(smtuCoord).title("СМТУ").icon(BitmapDescriptorFactory.fromResource(R.drawable.map_marker)));
                 googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(smtuCoord, 16f));
             }
