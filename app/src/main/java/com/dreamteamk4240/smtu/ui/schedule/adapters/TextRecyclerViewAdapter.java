@@ -12,17 +12,18 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.dreamteamk4240.smtu.R;
+import com.dreamteamk4240.smtu.data.IdAndName;
 import com.dreamteamk4240.smtu.ui.schedule.ScheduleViewModel;
 
 import java.util.ArrayList;
 
 public abstract class  TextRecyclerViewAdapter extends RecyclerView.Adapter<TextRecyclerViewAdapter.TextRecyclerViewHolder> {
-    protected ArrayList<String> datas;
+    protected ArrayList<IdAndName> datas;
     protected static final String TAG = TextRecyclerViewAdapter.class.getName();
     protected Context context;
     protected ScheduleViewModel scheduleViewModel;
 
-    public TextRecyclerViewAdapter(ArrayList<String> datas, Context context,ScheduleViewModel scheduleViewModel) {
+    public TextRecyclerViewAdapter(ArrayList<IdAndName> datas, Context context,ScheduleViewModel scheduleViewModel) {
         this.datas = datas;
         this.context = context;
         this.scheduleViewModel = scheduleViewModel;
@@ -44,7 +45,7 @@ public abstract class  TextRecyclerViewAdapter extends RecyclerView.Adapter<Text
     @Override
     public void onBindViewHolder(@NonNull TextRecyclerViewHolder holder, final int position) {
 
-        holder.recyclerTextView.setText(datas.get(position));
+        holder.recyclerTextView.setText(datas.get(position).getName());
         holder.linearLayout.setOnClickListener(v -> onClickAction(v,position));
     }
 

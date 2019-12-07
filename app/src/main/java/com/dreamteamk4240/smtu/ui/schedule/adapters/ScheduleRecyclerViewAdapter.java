@@ -14,22 +14,24 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.dreamteamk4240.smtu.R;
 import com.dreamteamk4240.smtu.data.Schedule;
+import com.dreamteamk4240.smtu.data.ScheduleTest;
 import com.dreamteamk4240.smtu.service.DayOfWeekConverter;
 import com.dreamteamk4240.smtu.ui.schedule.ScheduleViewModel;
 
 import java.util.ArrayList;
+import java.util.UUID;
 
 public class ScheduleRecyclerViewAdapter extends RecyclerView.Adapter<ScheduleRecyclerViewAdapter.ScheduleRecyclerViewHolder> {
-    private ArrayList<Schedule> schedules;
+    private ArrayList<ScheduleTest> schedules;
     private static final String TAG = ScheduleRecyclerViewAdapter.class.getName();
     private Context context;
     private DayOfWeekConverter dayOfWeekConverter;
     private ScheduleViewModel scheduleViewModel;
-    private String groupNumber;
+    private UUID groupNumber;
 
-    public ScheduleRecyclerViewAdapter(ArrayList<Schedule> faculties, Context context,ScheduleViewModel scheduleViewModel,String groupNumber) {
+    public ScheduleRecyclerViewAdapter(ArrayList<ScheduleTest> scheduleTests, Context context, ScheduleViewModel scheduleViewModel, UUID groupNumber) {
         dayOfWeekConverter = new DayOfWeekConverter(context.getResources().getStringArray(R.array.day_of_weeks));
-        this.schedules = faculties;
+        this.schedules = scheduleTests;
         this.context = context;
         this.scheduleViewModel = scheduleViewModel;
         this.groupNumber = groupNumber;
@@ -51,13 +53,13 @@ public class ScheduleRecyclerViewAdapter extends RecyclerView.Adapter<ScheduleRe
     @Override
     public void onBindViewHolder(@NonNull ScheduleRecyclerViewHolder holder, final int position) {
 
-        holder.subjectName.setText(schedules.get(position).getSubjectName());
-        holder.subjectType.setText(schedules.get(position).getSubjectType());
+        holder.subjectName.setText(schedules.get(position).getSubjectTest().getName());
+        holder.subjectType.setText(schedules.get(position).getSubjectTest().getSubjType());
         holder.timeTable.setText(schedules.get(position).getTime());
         holder.teacherName.setText(schedules.get(position).getTeacherName());
-        holder.auditoryName.setText(schedules.get(position).getAuditoryName());
+        holder.auditoryName.setText(schedules.get(position).getPlaceName());
 
-        holder.dayOfWeekImage.setText(dayOfWeekConverter.getNameByDayOfWeek(schedules.get(position).getDayOfWeekImage()));
+        holder.dayOfWeekImage.setText(dayOfWeekConverter.getNameByDayOfWeek(schedules.get(position).getDayOfWeek()));
 
         holder.schedule_item.setOnClickListener(v -> {
             Log.d(TAG, "Clicked on " + position + " position");

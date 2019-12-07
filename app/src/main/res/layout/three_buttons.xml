@@ -27,7 +27,7 @@
         android:layout_marginLeft="14dp"
         android:layout_marginTop="6dp"
         android:textSize="14sp"
-        android:background="@drawable/button_navigation"
+        android:background="@drawable/rounded_button_checked"
         android:text="Бакалавриат"
         android:textColor="@color/main_white"
         app:layout_constraintStart_toStartOf="parent"

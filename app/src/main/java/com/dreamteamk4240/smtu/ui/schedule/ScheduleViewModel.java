@@ -4,21 +4,32 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.dreamteamk4240.smtu.data.EducationTypeTest;
 import com.dreamteamk4240.smtu.data.ScheduleJson;
 
 import java.util.Objects;
+import java.util.UUID;
 
 public class ScheduleViewModel extends ViewModel {
 
     private final  MutableLiveData<String> mText = new MutableLiveData<>();
-    private final  MutableLiveData<String> faculty = new MutableLiveData<>();
-    private final  MutableLiveData<String> groupNumber = new MutableLiveData<>();
+    private final  MutableLiveData<UUID> faculty = new MutableLiveData<>();
+    private final  MutableLiveData<UUID> groupNumber = new MutableLiveData<>();
     private final  MutableLiveData<ScheduleJson> scheduleJson = new MutableLiveData<>();
     private final  MutableLiveData<Screen> screen = new MutableLiveData<>();
     private final  MutableLiveData<Boolean> isChangeScreen = new MutableLiveData<>();
     private final  MutableLiveData<SwitchType> switchType = new MutableLiveData<>();
     private final  MutableLiveData<Integer> courseNumber = new MutableLiveData<>();
     private final  MutableLiveData<WeekType> weekType = new MutableLiveData<>();
+    private final  MutableLiveData<EducationTypeTest> educationType = new MutableLiveData<>();
+
+    public MutableLiveData<EducationTypeTest> getEducationType() {
+        return educationType;
+    }
+
+    public void setEducationType(EducationTypeTest educationType) {
+         this.educationType.setValue(educationType);
+    }
 
     public MutableLiveData<WeekType> getWeekType() {
         return weekType;
@@ -41,16 +52,16 @@ public class ScheduleViewModel extends ViewModel {
     public LiveData<String> getText() {
         return mText;
     }
-    public LiveData<String> getFaculty() {
+    public LiveData<UUID> getFaculty() {
         return faculty;
     }
-    public void setFaculty(String faculty){
+    public void setFaculty(UUID faculty){
         this.faculty.setValue(faculty);
     }
-    public LiveData<String> getGroupNumber() {
+    public LiveData<UUID> getGroupNumber() {
         return groupNumber;
     }
-    public void setGroupNumber(String groupNumber){
+    public void setGroupNumber(UUID groupNumber){
         this.groupNumber.setValue(groupNumber);
     }
     public LiveData<ScheduleJson> getSchedule(){return scheduleJson;}
